@@ -1,8 +1,7 @@
 package com.briup.apps.ej.web.controller;
 
-
-import com.briup.apps.ej.bean.Customer;
-import com.briup.apps.ej.service.ICustomerService;
+import com.briup.apps.ej.bean.Product;
+import com.briup.apps.ej.service.IProductService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
@@ -14,49 +13,49 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/product")
+public class ProductController {
     @Autowired
-    private ICustomerService customerService;
+    private IProductService productService;
 
-    @ApiOperation("查询所有顾客")
+    @ApiOperation("查询所有商品")
     @GetMapping("/findAll")
     public Message findAll(){
-        List<Customer> list=customerService.findAll();
+        List<Product> list = productService.findAll();
         return MessageUtil.success("success",list);
     }
 
-    @ApiOperation("按顾客姓名模糊查找")
-    @GetMapping("/query")
-    public Message query(Customer customer){
-        List<Customer> list=customerService.query(customer);
-        return MessageUtil.success("success",list);
-    }
-
-    @ApiOperation("通过id查询")
+    @ApiOperation("按商品ID查询商品")
     @GetMapping("/findById")
     public Message findById(long id){
-        Customer customer= customerService.findById(id);
-        return MessageUtil.success("success",customer);
+        Product product = productService.findById(id);
+        return MessageUtil.success("success",product);
     }
 
-    @ApiOperation("新增或更新顾客信息")
+    @ApiOperation("模糊查询")
+    @GetMapping("/query")
+    public Message query(Product product){
+        List<Product> list = productService.query(product);
+        return MessageUtil.success("success",list);
+    }
+
+    @ApiOperation("更新或添加商品")
     @GetMapping("/saveOrUpdate")
-    public Message saveOrUpdate(Customer customer){
+    public Message saveOrUpdate(Product product){
         try {
-            customerService.saveOrUpdate(customer);
-            return MessageUtil.success("success",customer);
+            productService.saveOrUpdate(product);
+            return MessageUtil.success("保存成功！");
         }catch (Exception e){
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
     }
 
-    @ApiOperation("按ID删除顾客信息")
+    @ApiOperation("删除商品")
     @GetMapping("/deleteById")
     public Message deleteById(long id){
         try {
-            customerService.deleteById(id);
+            productService.deleteById(id);
             return MessageUtil.success("删除成功！");
         }catch (Exception e){
             e.printStackTrace();
