@@ -25,7 +25,7 @@ public class ProductController {
         return MessageUtil.success("success",list);
     }
 
-    
+
     @ApiOperation("按商品ID查询商品")
     @GetMapping("/findById")
     public Message findById(long id){
