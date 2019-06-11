@@ -14,6 +14,6 @@ public interface IProductService {
 
     void saveOrUpdate(Product product)throws Exception;
 
-    void deleteById(long  id)throws Exception    ;
+    void deleteById(long id)throws Exception    ;
 
 }
