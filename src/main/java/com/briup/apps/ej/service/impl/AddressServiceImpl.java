@@ -14,7 +14,6 @@ import java.util.List;
 public class AddressServiceImpl implements IAddressService {
     // 自动注入mapper实例
     @Resource
-    private IAddressService addressService;
     private AddressMapper addressMapper;
 
     @Override
