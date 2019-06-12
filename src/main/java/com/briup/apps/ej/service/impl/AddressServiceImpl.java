@@ -68,14 +68,21 @@ public class AddressServiceImpl implements IAddressService {
     }
 
 
-
     @Override
-    public void deleteById(long id) throws Exception {
-        Address address = addressMapper.selectByPrimaryKey(id);
-        if(address == null){
-            throw new Exception("要删除的用户不存在");
-        }else{
+    public void batchDelete(long[] ids) throws Exception {
+        for (long id : ids) {
             addressMapper.deleteByPrimaryKey(id);
         }
+    }
+        @Override
+        public void deleteById(long id) throws Exception {
+            Address address = addressMapper.selectByPrimaryKey(id);
+            if(address == null){
+                throw new Exception("要删除的用户不存在");
+            }else{
+                addressMapper.deleteByPrimaryKey(id);
+
+    }
+
     }
 }
