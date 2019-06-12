@@ -1,5 +1,6 @@
 package com.briup.apps.ej.web.controller;
 
+
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.service.ICustomerService;
 import com.briup.apps.ej.utils.Message;
@@ -22,28 +23,50 @@ public class CustomerController {
     @Autowired
     private ICustomerService customerService;
 
-
-    @GetMapping("findAll")
-    @ApiOperation("查询所有顾客信息")
+    @ApiOperation("查询所有顾客")
+    @GetMapping("/findAll")
     public Message findAll(){
-        List<Customer> list = customerService.findAll();
+        List<Customer> list=customerService.findAll();
         return MessageUtil.success("success",list);
     }
 
-    @PostMapping("saveOrUpdate")
-    @ApiOperation("保存或者更新顾客信息")
-    public Message saveOrUpdate(Customer customer) throws Exception{
-        customerService.saveOrUpdate(customer);
-        return MessageUtil.success("操作成功");
+    @ApiOperation("按顾客姓名模糊查找")
+    @GetMapping("/query")
+    public Message query(Customer customer){
+        List<Customer> list=customerService.query(customer);
+        return MessageUtil.success("success",list);
     }
 
-    @GetMapping("deleteById")
-    @ApiOperation("通过ID删除")
-    public Message deleteById(Long id) throws Exception{
-        customerService.deleteById(id);
-        return MessageUtil.success("删除成功");
+    @ApiOperation("通过id查询")
+    @GetMapping("/findById")
+    public Message findById(long id){
+        Customer customer= customerService.findById(id);
+        return MessageUtil.success("success",customer);
     }
 
+    @ApiOperation("新增或更新顾客信息")
+    @PostMapping("/saveOrUpdate")
+    public Message saveOrUpdate(Customer customer){
+        try {
+            customerService.saveOrUpdate(customer);
+            return MessageUtil.success("success",customer);
+        }catch (Exception e){
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
+    }
+
+    @ApiOperation("按ID删除顾客信息")
+    @GetMapping("/deleteById")
+    public Message deleteById(long id){
+        try {
+            customerService.deleteById(id);
+            return MessageUtil.success("删除成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
+    }
     @PostMapping("batchDelete")
     @ApiOperation("批量删除顾客信息")
     public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{

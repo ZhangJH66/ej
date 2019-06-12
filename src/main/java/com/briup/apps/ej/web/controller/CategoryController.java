@@ -67,7 +67,7 @@ public class CategoryController {
         }
     }
     @PostMapping("batchDelete")
-    @ApiOperation("批量删除服务员信息")
+    @ApiOperation("批量删除种类信息")
     public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
        categoryService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");

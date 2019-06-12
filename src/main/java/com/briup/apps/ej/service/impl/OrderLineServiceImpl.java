@@ -46,4 +46,10 @@ public class OrderLineServiceImpl implements IOrderLineService {
             orderLineMapper.deleteByPrimaryKey(id);
         }
     }
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            orderLineMapper.deleteByPrimaryKey(id);
+        }
+    }
 }

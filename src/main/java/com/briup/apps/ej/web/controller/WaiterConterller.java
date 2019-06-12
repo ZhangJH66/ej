@@ -45,7 +45,7 @@ public class WaiterConterller {
     }
 
     @ApiOperation("保存或更新服务员信息")
-    @GetMapping("saveOrUpdate")
+    @PostMapping("saveOrUpdate")
     public Message saveOrUpdate(Waiter waiter){
         try {
             waiterService.saveOrUpdate(waiter);

@@ -56,7 +56,6 @@ public class CategoryServiceImpl implements ICategoryService {
     public void saveOrUpdate(Category category) throws Exception {
         if(category.getId() == null){
             // 初始化属性
-
             categoryMapper.insert(category);
         } else {
             categoryMapper.updateByPrimaryKey(category);

@@ -72,7 +72,7 @@ public class AddressController {
     }
 
     @PostMapping("batchDelete")
-    @ApiOperation("批量删除服务员信息")
+    @ApiOperation("批量删除地址信息")
     public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception {
         addressService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");

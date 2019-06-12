@@ -46,5 +46,11 @@ public class OrderServiceImpl implements IOrderService {
             ordermapper.deleteByPrimaryKey(id);
         }
     }
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            ordermapper.deleteByPrimaryKey(id);
+        }
+    }
 
 }
