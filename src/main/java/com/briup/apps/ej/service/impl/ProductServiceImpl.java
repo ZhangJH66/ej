@@ -69,4 +69,11 @@ public class ProductServiceImpl implements IProductService {
             productMapper.deleteByPrimaryKey(id);
         }
     }
+
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            productMapper.deleteByPrimaryKey(id);
+        }
+    }
 }

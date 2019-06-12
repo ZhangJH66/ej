@@ -7,9 +7,11 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -24,7 +26,6 @@ public class ProductController {
         List<Product> list = productService.findAll();
         return MessageUtil.success("success",list);
     }
-
 
     @ApiOperation("按商品ID查询商品")
     @GetMapping("/findById")
@@ -62,5 +63,12 @@ public class ProductController {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
+    }
+
+    @PostMapping("batchDelete")
+    @ApiOperation("批量删除商品信息")
+    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+        productService.batchDelete(ids);
+        return MessageUtil.success("批量删除成功");
     }
 }
