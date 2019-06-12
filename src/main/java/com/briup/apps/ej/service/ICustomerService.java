@@ -7,6 +7,10 @@ import java.util.List;
 public interface ICustomerService {
     List<Customer> findAll();
 
+    List<Customer> query(Customer customer);
+
+    Customer findById(long id);
+
     void saveOrUpdate(Customer customer) throws Exception;
 
     void deleteById(long id) throws Exception;

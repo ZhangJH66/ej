@@ -53,6 +53,7 @@ public class WaiterServiceImpl implements IWaiterService {
     @Override
     public void saveOrUpdate(Waiter waiter) throws Exception {
         if (waiter.getId() == null) {
+            waiter.setStatus("正常");
             // 初始化属性
             waiterMapper.insert(waiter);
         } else {

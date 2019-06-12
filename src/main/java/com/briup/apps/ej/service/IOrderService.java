@@ -14,4 +14,5 @@ public interface IOrderService {
     void saveOrUpdate(Order order) throws Exception ;
 
     void deleteById(long id) throws Exception ;
+    void batchDelete(long[] ids) throws Exception;
 }
