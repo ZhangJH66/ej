@@ -10,5 +10,5 @@ public interface ICommentService {
     Comment findById(long id);
     void saveOrUpdate(Comment category) throws Exception ;
     void deleteById(long id) throws Exception ;
-
+    void batchDelete(long[] ids) throws Exception;
 }

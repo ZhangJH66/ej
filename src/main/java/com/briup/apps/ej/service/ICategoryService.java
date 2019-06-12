@@ -12,5 +12,6 @@ public interface ICategoryService {
     void saveOrUpdate(Category category) throws Exception ;
     void deleteById(long id) throws Exception ;
 
+    void batchDelete(long[] ids) throws Exception;
 
 }

@@ -16,6 +16,8 @@ public class CategoryServiceImpl implements ICategoryService {
     @Resource
     private CategoryMapper categoryMapper;
 
+
+
     @Override
     public List<Category> query(Category category) {
         // 创建空模板
@@ -63,12 +65,20 @@ public class CategoryServiceImpl implements ICategoryService {
 
 
     @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for (long id : ids) {
+            categoryMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+    @Override
     public void deleteById(long id) throws Exception {
         Category category = categoryMapper.selectByPrimaryKey(id);
-        if(category == null){
+        if (category == null) {
             throw new Exception("要删除的用户不存在");
         } else {
             categoryMapper.deleteByPrimaryKey(id);
         }
     }
-}
+
+    }

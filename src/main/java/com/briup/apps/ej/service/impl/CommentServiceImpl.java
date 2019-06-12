@@ -60,6 +60,13 @@ public class CommentServiceImpl implements ICommentService {
     }
 
     @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            commentMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+    @Override
     public void deleteById(long id) throws Exception {
         Comment comment = commentMapper.selectByPrimaryKey(id);
         if(comment == null){
