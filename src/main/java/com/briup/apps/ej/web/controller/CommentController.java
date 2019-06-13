@@ -30,6 +30,7 @@ public class CommentController {
 
 
     @GetMapping("findAll")
+    @ApiOperation("查询所有")
     public Message findAll(){
         List<Comment> list = commentService.findAll();
         return MessageUtil.success("success",list);
