@@ -1,10 +1,12 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.IOrderService;
 
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +21,8 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
+
+@Api(description = "订单管理相关接口")
 @Validated
 @RestController
 @RequestMapping("/order")
@@ -28,12 +32,22 @@ public class OrderController {
     @Autowired
     private IOrderService orderService;
 
+
+    @GetMapping("query")
+    @ApiOperation("查询订单信息，并且订单级联关键的属性")
+    public Message query(Long customerId,Long waiterId) {
+        List<OrderExtend> list = orderService.query(customerId, waiterId);
+        return MessageUtil.success("success", list);
+    }
+
     @ApiOperation("查询全部订单")
     @GetMapping("findAll")
     public Message findAll() {
         List<Order> list = orderService.findAll();
         return MessageUtil.success("success", list);
     }
+
+
 
     @ApiOperation("通过id查询订单")
     @GetMapping("findById")
