@@ -17,4 +17,5 @@ public interface IProductService {
     void deleteById(long id)throws Exception    ;
     void batchDelete(long[] ids) throws Exception;
 
+
 }

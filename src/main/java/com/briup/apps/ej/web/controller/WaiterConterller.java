@@ -57,7 +57,7 @@ public class WaiterConterller {
     }
 
     @ApiOperation("删除服务员信息")
-    @GetMapping("deleteById")
+    @PostMapping("deleteById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
             waiterService.deleteById(id);

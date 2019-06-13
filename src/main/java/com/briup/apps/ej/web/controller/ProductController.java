@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-
 @Validated
 @RestController
 @RequestMapping("/product")
@@ -29,7 +28,6 @@ public class ProductController {
         List<Product> list = productService.findAll();
         return MessageUtil.success("success",list);
     }
-
 
     @ApiOperation("按商品ID查询商品")
     @GetMapping("/findById")
@@ -59,7 +57,7 @@ public class ProductController {
 
     @ApiOperation("删除商品")
     @GetMapping("/deleteById")
-    public Message deleteById(long id){
+    public Message deleteById(@NotNull long id){
         try {
             productService.deleteById(id);
             return MessageUtil.success("删除成功！");
@@ -68,8 +66,9 @@ public class ProductController {
             return MessageUtil.error(e.getMessage());
         }
     }
+
     @PostMapping("batchDelete")
-    @ApiOperation("批量删除产品信息")
+    @ApiOperation("批量删除商品信息")
     public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
         productService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
