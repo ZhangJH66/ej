@@ -2,7 +2,9 @@ package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
+import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.dao.OrderMapper;
+import com.briup.apps.ej.dao.extend.OrderExtendMapper;
 import com.briup.apps.ej.service.IOrderService;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ import java.util.List;
 public class OrderServiceImpl implements IOrderService {
     @Resource
     private OrderMapper ordermapper;
-
+    private OrderExtendMapper orderExtendMapper;
 
     @Override
     public List<Order> findAll() {
@@ -53,4 +55,13 @@ public class OrderServiceImpl implements IOrderService {
         }
     }
 
+    @Override
+    public List<OrderExtend> query(Long customerId, Long waiterId) {
+        return orderExtendMapper.query(customerId,waiterId);
+    }
+
+    @Override
+    public OrderExtend findByIdExtend(long id) {
+        return orderExtendMapper.selectByIdExtend(id);
+    }
 }

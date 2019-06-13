@@ -57,7 +57,6 @@ public class ProductServiceImpl implements IProductService {
         }else {
             productMapper.updateByPrimaryKey(product);
         }
-
     }
 
     @Override

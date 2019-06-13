@@ -6,6 +6,7 @@ import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -42,7 +44,7 @@ public class ProductController {
     }
 
     @ApiOperation("更新或添加商品")
-    @GetMapping("/saveOrUpdate")
+    @PostMapping("/saveOrUpdate")
     public Message saveOrUpdate(Product product){
         try {
             productService.saveOrUpdate(product);
@@ -55,7 +57,7 @@ public class ProductController {
 
     @ApiOperation("删除商品")
     @GetMapping("/deleteById")
-    public Message deleteById(long id){
+    public Message deleteById(@NotNull long id){
         try {
             productService.deleteById(id);
             return MessageUtil.success("删除成功！");
