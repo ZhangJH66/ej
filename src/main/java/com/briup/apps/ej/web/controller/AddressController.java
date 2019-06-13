@@ -29,7 +29,8 @@ public class AddressController {
         return MessageUtil.success("success", list);
     }
 
-    @GetMapping("/查询所有")
+    @GetMapping("/findAll")
+    @ApiOperation("查询所有")
     public Message findAll() {
         List<Address> list = addressService.findAll();
         return MessageUtil.success("success", list);
