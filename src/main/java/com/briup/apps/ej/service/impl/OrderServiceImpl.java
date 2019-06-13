@@ -62,4 +62,8 @@ public class OrderServiceImpl implements IOrderService {
         }
     }
 
+    @Override
+    public OrderExtend findByIdExtend(long id) {
+        return null;
+    }
 }

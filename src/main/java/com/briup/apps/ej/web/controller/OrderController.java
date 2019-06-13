@@ -89,11 +89,6 @@ public class OrderController {
         return MessageUtil.success("批量删除成功");
     }
 
-    @GetMapping("query")
-    @ApiOperation("查询订单信息，并且订单级联关键的属性")
-    public Message query(Long customerId,Long waiterId){
-        List<OrderExtend> list = orderService.query(customerId,waiterId);
-        return MessageUtil.success("success",list);
-    }
+
 }
 

@@ -18,7 +18,6 @@ public interface IOrderService {
     void deleteById(long id) throws Exception ;
     void batchDelete(long[] ids) throws Exception;
 
-    List<OrderExtend> query(Long customerId,Long waiterId);
 
     OrderExtend findByIdExtend(long id);
 }
