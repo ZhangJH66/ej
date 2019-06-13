@@ -29,6 +29,7 @@ public class CategoryController {
 
 
     @GetMapping("findAll")
+    @ApiOperation("查询所有")
     public Message findAll(){
         List<Category> list = categoryService.findAll();
         return MessageUtil.success("success",list);

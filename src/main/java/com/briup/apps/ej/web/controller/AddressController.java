@@ -29,7 +29,8 @@ public class AddressController {
         return MessageUtil.success("success", list);
     }
 
-    @GetMapping("/查询所有")
+    @GetMapping("/findAll")
+    @ApiOperation("查询所有")
     public Message findAll() {
         List<Address> list = addressService.findAll();
         return MessageUtil.success("success", list);
@@ -70,7 +71,6 @@ public class AddressController {
         }
 
     }
-
     @PostMapping("batchDelete")
     @ApiOperation("批量删除地址信息")
     public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception {
