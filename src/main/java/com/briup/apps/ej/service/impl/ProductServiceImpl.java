@@ -53,10 +53,12 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public void saveOrUpdate(Product product) throws Exception{
         if (product.getId()==null){
+            product.setStatus("正常");
             productMapper.insert(product);
         }else {
             productMapper.updateByPrimaryKey(product);
         }
+
     }
 
     @Override
@@ -68,7 +70,6 @@ public class ProductServiceImpl implements IProductService {
             productMapper.deleteByPrimaryKey(id);
         }
     }
-
     @Override
     public void batchDelete(long[] ids) throws Exception {
         for(long id :ids){

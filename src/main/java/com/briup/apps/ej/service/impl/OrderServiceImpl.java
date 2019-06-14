@@ -25,14 +25,22 @@ public class OrderServiceImpl implements IOrderService {
     @Resource
     private OrderLineMapper orderLineMapper;
 
-    @Override
-    public List<OrderVM> queryBasic(Long customerId, Long waiterId) {
-        return orderExtendMapper.queryBasic(customerId, waiterId);
-    }
+
 
     @Override
     public List<OrderExtend> query(Long customerId, Long waiterId) {
         return orderExtendMapper.query(customerId,waiterId);
+    }
+
+    @Override
+    public List<OrderVM> queryBasic(Long customerId, Long waiterId) {
+        return orderExtendMapper.queryBasic(customerId,waiterId);
+    }
+
+    @Override
+    public List<Order> findAll() {
+        OrderExample example = new OrderExample();
+        return ordermapper.selectByExample(example);
     }
 
 
@@ -41,11 +49,6 @@ public class OrderServiceImpl implements IOrderService {
         return ordermapper.selectByPrimaryKey(id);
     }
 
-    @Override
-    public List<Order> findAll() {
-        OrderExample example = new OrderExample();
-        return ordermapper.selectByExample(example);
-    }
 
     @Override
     public void save(OrderAndOrderLineVM order) throws Exception {
@@ -68,12 +71,12 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public void deleteById(long id) throws Exception {
         Order order = ordermapper.selectByPrimaryKey(id);
-        if(order == null){
-            throw new Exception("要删除的订单信息不存在");
+        if (order == null) {
+            throw new Exception("要删除的订单不存在");
+        } else {
+            ordermapper.deleteByPrimaryKey(id);
         }
-        ordermapper.deleteByPrimaryKey(id);
     }
-
     @Override
     public void batchDelete(long[] ids) throws Exception {
         for(long id :ids){
