@@ -1,6 +1,8 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.VM.OrderAndOrderLineVM;
+import com.briup.apps.ej.bean.VM.OrderVM;
 import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.IOrderService;
 
@@ -16,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -40,6 +42,14 @@ public class OrderController {
         return MessageUtil.success("success", list);
     }
 
+    @GetMapping("queryBasic")
+    @ApiOperation("查询订单信息，返回列表数据")
+    public Message queryBasic(Long customerId,Long waiterId) {
+        List<OrderVM> list = orderService.queryBasic(customerId, waiterId);
+        return MessageUtil.success("success", list);
+    }
+
+
     @ApiOperation("查询全部订单")
     @GetMapping("findAll")
     public Message findAll() {
@@ -62,15 +72,12 @@ public class OrderController {
 
     @ApiOperation("保存或更新订单信息")
     @PostMapping("saveOrUpdate")
-    public Message saveOrUpdate(Order order){
-        try {
-            orderService.saveOrUpdate(order);
-            return MessageUtil.success("保存成功!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
+    public Message saveOrUpdate(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception{
+        orderService.save(order);
+        return MessageUtil.success("操作成功");
     }
+
+
     @ApiOperation("通过id删除订单信息")
     @GetMapping("deleteById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
