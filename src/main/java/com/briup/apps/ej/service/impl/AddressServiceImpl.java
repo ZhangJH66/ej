@@ -3,7 +3,9 @@ package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.AddressExample;
+import com.briup.apps.ej.bean.extend.AddressExtend;
 import com.briup.apps.ej.dao.AddressMapper;
+import com.briup.apps.ej.dao.extend.AddressExtendMapper;
 import com.briup.apps.ej.service.IAddressService;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +17,16 @@ public class AddressServiceImpl implements IAddressService {
     // 自动注入mapper实例
     @Resource
     private AddressMapper addressMapper;
+    @Resource
+    private AddressExtendMapper addressExtendMapper;
 
     @Override
     public List<Address> query(Address address) {
-        // 创建空模板
+
         AddressExample example = new AddressExample();
-        // 在模板中添加条件
+
+
+
         if (address.getProvince() != null) {
             example
                     .createCriteria()
