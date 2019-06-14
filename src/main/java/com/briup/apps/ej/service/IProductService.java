@@ -2,11 +2,14 @@ package com.briup.apps.ej.service;
 
 
 import com.briup.apps.ej.bean.Product;
+import com.briup.apps.ej.bean.VM.ProductVM;
 
 import java.util.List;
 
 public interface IProductService {
     List<Product> findAll();
+
+    List<ProductVM> queryBasic(Long categoryId);
 
     List<Product> query(Product product);
 

@@ -1,9 +1,11 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Product;
+import com.briup.apps.ej.bean.VM.ProductVM;
 import com.briup.apps.ej.service.IProductService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -15,12 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Api(description = "订单管理相关接口")
 @Validated
 @RestController
 @RequestMapping("/product")
 public class ProductController {
     @Autowired
     private IProductService productService;
+
+
+
+    @GetMapping("queryBasic")
+    @ApiOperation("查询订单信息，返回列表数据")
+    public Message queryBasic(Long category_id) {
+        List<ProductVM> list = productService.queryBasic(category_id);
+        return MessageUtil.success("success", list);
+    }
+
 
     @ApiOperation("查询所有商品")
     @GetMapping("/findAll")

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.ej.dao.extend.ProductExtendMapper">
+    <select id="queryBasic" resultMap="productVMResultMap">
+        select
+        p.id as p_id,
+        p.name as p_name,
+        p.description as description,
+        p.price as price,
+        p.photo as photo,
+        c.name as c_name
+        from ej_category c,ej_product p
+        <where>
+            c.id = p.category_id
+
+            <if test="categoryId!=null">
+                AND c.id = #{categoryId}
+            </if>
+
+        </where>
+    </select>
+    <resultMap id="productVMResultMap" type="com.briup.apps.ej.bean.VM.ProductVM">
+        <id column="p_id" jdbcType="BIGINT" property="productId" />
+        <result column="description" property="description" />
+        <result column="p_name"  property="product_name" />
+        <result column="price"  property="price" />
+        <result column="photo"  property="photo" />
+        <result column="c_name"  property="category_name" />
+    </resultMap>
+</mapper>
