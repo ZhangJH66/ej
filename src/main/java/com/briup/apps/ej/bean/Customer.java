@@ -1,12 +1,14 @@
 package com.briup.apps.ej.bean;
 
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 import javax.validation.constraints.NotBlank;
 
-@ApiModel("顾客模型")
+@ApiModel
 public class Customer {
     /**
      *
@@ -24,9 +26,8 @@ public class Customer {
      *
      * @mbg.generated Mon Jun 10 11:20:04 CST 2019
      */
-
-    @ApiParam(value = "手机号",required = true)
-    @NotBlank(message = "手机号不能为空")
+    @ApiParam(value = "手机号")
+    @NotBlank(message = "手机号不能为空！")
     private String telephone;
 
     /**

@@ -35,20 +35,20 @@ public class OrderController {
     private IOrderService orderService;
 
 
-    @GetMapping("queryBasic")
-    @ApiOperation("查询订单信息，返回列表数据")
-    public Message queryBasic(Long customerId,Long waiterId){
-        List<OrderVM> list = orderService.queryBasic(customerId,waiterId);
-        return MessageUtil.success("success",list);
-    }
-
-
     @GetMapping("query")
     @ApiOperation("查询订单信息，并且订单级联关键的属性")
     public Message query(Long customerId,Long waiterId) {
         List<OrderExtend> list = orderService.query(customerId, waiterId);
         return MessageUtil.success("success", list);
     }
+
+    @GetMapping("queryBasic")
+    @ApiOperation("查询订单信息，返回列表数据")
+    public Message queryBasic(Long customerId,Long waiterId) {
+        List<OrderVM> list = orderService.queryBasic(customerId, waiterId);
+        return MessageUtil.success("success", list);
+    }
+
 
     @ApiOperation("查询全部订单")
     @GetMapping("findAll")
@@ -69,13 +69,13 @@ public class OrderController {
     }
 
 
-    @PostMapping("save")
-    @ApiOperation("保存订单信息")
+
+    @ApiOperation("保存或更新订单信息")
+    @PostMapping("saveOrUpdate")
     public Message saveOrUpdate(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception{
         orderService.save(order);
         return MessageUtil.success("操作成功");
     }
-
 
 
     @ApiOperation("通过id删除订单信息")
@@ -95,5 +95,7 @@ public class OrderController {
         orderService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }
-    }
+
+
+}
 
