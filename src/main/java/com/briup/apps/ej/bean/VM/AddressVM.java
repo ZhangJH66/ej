@@ -1,4 +1,4 @@
-package com.briup.apps.ej.bean.vm;
+package com.briup.apps.ej.bean.VM;
 
 import io.swagger.annotations.ApiParam;
 
