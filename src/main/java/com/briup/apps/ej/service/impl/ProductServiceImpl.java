@@ -20,6 +20,7 @@ public class ProductServiceImpl implements IProductService {
     private ProductExtendMapper productExtendMapper;
 
     @Override
+
     public List<ProductVM> queryBasic(Long categoryId) {
         return productExtendMapper.queryBasic(categoryId);
     }

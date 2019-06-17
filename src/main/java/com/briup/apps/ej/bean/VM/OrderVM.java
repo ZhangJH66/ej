@@ -5,6 +5,16 @@ package com.briup.apps.ej.bean.VM;
  * 订单在前端显示的时候需要的数据模型
  * */
 public class OrderVM {
+    private Long customerId;
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
     private Long orderId;
     private String customerName;
     private String waiterName;
