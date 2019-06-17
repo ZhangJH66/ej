@@ -1,26 +1,16 @@
-package com.briup.apps.ej.bean.VM;
+package com.briup.apps.ej.bean.vm;
 
-/**
- * 数据模型
- * 订单在前端显示的时候需要的数据模型
- * */
+import io.swagger.annotations.ApiParam;
+
 public class AddressVM {
-    private String customerId;
-    private Long addressId;
+    @ApiParam(value = "顾客ID",required = true)
+    private Long customerId;
 
-    public String getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
-    }
-
-    public Long getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
     }
 }
